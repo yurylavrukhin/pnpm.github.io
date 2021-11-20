@@ -58,7 +58,7 @@ express
 </code></pre><p>你可以在<a href="https://github.com/zkochan/comparing-node-modules/tree/master/npm-example/node_modules">这里</a>看到整个目录。</p><p>然后这是你在 pnpm 创建的 <code>node_modules</code> 中得到的：</p><pre><code class="language-text">.pnpm
 .modules.yaml
 express
-</code></pre><p>你可以在<a href="https://github.com/zkochan/comparing-node-modules/tree/master/pnpm5-example/node_modules">这里</a>查看。</p><p>所以所有的依赖去哪了呢？ <code>node_modules</code> 中只有一个叫 <code>.pnpm</code> 的文件夹以及一个叫做 <code>express</code> 的软链。 不错，我们只安装了 <code>express</code>，所以它是唯一一个你的应用必须拥有访问权限的包。</p><blockquote><p>在<a href="https://medium.com/pnpm/pnpms-strictness-helps-to-avoid-silly-bugs-9a15fb306308">这里</a>阅读更多关于为什么 pnpm 的严格是一件好事。</p></blockquote><p>让我们看看在 <code>express</code> 中都有些什么：</p><pre><code class="language-text">▾ node_modules
+</code></pre><p>你可以在<a href="https://github.com/zkochan/comparing-node-modules/tree/master/pnpm5-example/node_modules">这里</a>查看。</p><p>所以所有的依赖去哪了呢？ <code>node_modules</code> 中只有一个叫 <code>.pnpm</code> 的文件夹以及一个叫做 <code>express</code> 的符号链接。 不错，我们只安装了 <code>express</code>，所以它是唯一一个你的应用必须拥有访问权限的包。</p><blockquote><p>在<a href="https://medium.com/pnpm/pnpms-strictness-helps-to-avoid-silly-bugs-9a15fb306308">这里</a>阅读更多关于为什么 pnpm 的严格是一件好事。</p></blockquote><p>让我们看看在 <code>express</code> 中都有些什么：</p><pre><code class="language-text">▾ node_modules
   ▸ .pnpm
   ▾ express
     ▸ lib
@@ -68,7 +68,7 @@ express
       package.json
       Readme.md
     .modules.yaml
-</code></pre><p><code>express</code> 没有 <code>node_modules</code>? <code>express</code> 的所有依赖都去哪里了？</p><p>诀窍是 <code>express</code> 只是一个软链。 当 Node.js 解析依赖的时候，它使用这些依赖的真实位置，所以它不保留软链。 但是你可能就会问了，<code>express</code> 的真实位置在哪呢？</p><p>这里：<a href="https://github.com/zkochan/comparing-node-modules/tree/master/pnpm5-example/node_modules/.pnpm/express@4.17.1/node_modules/express">node_modules/.pnpm/express@4.17.1/node_modules/express</a>。</p><p>OK，所以我们现在知道了 <code>.pnpm/</code> 文件夹的用途。 <code>.pnpm/</code> 以平铺的形式储存着所有的包，所以每个包都可以在这种命名模式的文件夹中被找到：</p><pre><code class="language-text">.pnpm/&lt;name&gt;@&lt;version&gt;/node_modules/&lt;name&gt;
+</code></pre><p><code>express</code> 没有 <code>node_modules</code>? <code>express</code> 的所有依赖都去哪里了？</p><p>诀窍是 <code>express</code> 只是一个符号链接。 当 Node.js 解析依赖的时候，它使用这些依赖的真实位置，所以它不保留符号链接。 但是你可能就会问了，<code>express</code> 的真实位置在哪呢？</p><p>这里：<a href="https://github.com/zkochan/comparing-node-modules/tree/master/pnpm5-example/node_modules/.pnpm/express@4.17.1/node_modules/express">node_modules/.pnpm/express@4.17.1/node_modules/express</a>。</p><p>OK，所以我们现在知道了 <code>.pnpm/</code> 文件夹的用途。 <code>.pnpm/</code> 以平铺的形式储存着所有的包，所以每个包都可以在这种命名模式的文件夹中被找到：</p><pre><code class="language-text">.pnpm/&lt;name&gt;@&lt;version&gt;/node_modules/&lt;name&gt;
 </code></pre><p>我们称之为虚拟存储目录。</p><p>这个平铺的结构避免了 npm v2 创建的嵌套 <code>node_modules</code> 引起的长路径问题，但与 npm v3,4,5,6 或 yarn v1 创建的平铺的 <code>node_modules</code> 不同的是，它保留了包之间的相互隔离。</p><p>现在让我们看看 <code>express</code> 的真实位置：</p><pre><code class="language-text">  ▾ express
     ▸ lib
       History.md
@@ -76,7 +76,7 @@ express
       LICENSE
       package.json
       Readme.md
-</code></pre><p>这是个骗局吗？ 还是没有 <code>node_modules</code>！ Pnmp 的 <code>node_modules</code> 结构的第二个诀窍是包的依赖项与依赖包的实际位置位于同一目录级别。 所以 <code>express</code> 的依赖不在 <code>.pnpm/express@4.17.1/node_modules/express/node_modules/</code> 而是在 <a href="https://github.com/zkochan/comparing-node-modules/tree/master/pnpm5-example/node_modules/.pnpm/express@4.17.1/node_modules">.pnpm/express@4.17.1/node_modules/</a>：</p><pre><code class="language-text">▾ node_modules
+</code></pre><p>这是个骗局吗？ 还是没有 <code>node_modules</code>！ pnpm 的 <code>node_modules</code> 结构的第二个诀窍是包的依赖项与依赖包的实际位置位于同一目录级别。 所以 <code>express</code> 的依赖不在 <code>.pnpm/express@4.17.1/node_modules/express/node_modules/</code> 而是在 <a href="https://github.com/zkochan/comparing-node-modules/tree/master/pnpm5-example/node_modules/.pnpm/express@4.17.1/node_modules">.pnpm/express@4.17.1/node_modules/</a>：</p><pre><code class="language-text">▾ node_modules
   ▾ .pnpm
     ▸ accepts@1.3.5
     ▸ array-flatten@1.1.1
