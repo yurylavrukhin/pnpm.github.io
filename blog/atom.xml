@@ -9,7 +9,7 @@
     <icon>https://pnpm.io/img/favicon.png</icon>
     <entry>
         <title type="html"><![CDATA[Node-Modules configuration options with pnpm]]></title>
-        <id>Node-Modules configuration options with pnpm</id>
+        <id>/2020/10/17/node-modules-configuration-options-with-pnpm</id>
         <link href="https://pnpm.io/blog/2020/10/17/node-modules-configuration-options-with-pnpm"/>
         <updated>2020-10-17T00:00:00.000Z</updated>
         <summary type="html"><![CDATA[There are many ways to create a node_modules directory.]]></summary>
@@ -37,7 +37,7 @@ symlink=false
     </entry>
     <entry>
         <title type="html"><![CDATA[Flat node_modules is not the only way]]></title>
-        <id>Flat node_modules is not the only way</id>
+        <id>/2020/05/27/flat-node-modules-is-not-the-only-way</id>
         <link href="https://pnpm.io/blog/2020/05/27/flat-node-modules-is-not-the-only-way"/>
         <updated>2020-05-27T00:00:00.000Z</updated>
         <summary type="html"><![CDATA[New users of pnpm frequently ask me about the weird structure of node_modules that pnpm creates. Why is it not flat? Where are all the sub-dependencies?]]></summary>

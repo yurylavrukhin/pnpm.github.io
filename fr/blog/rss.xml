@@ -10,7 +10,7 @@
         <item>
             <title><![CDATA[Options de configuration des node_modules avec pnpm]]></title>
             <link>https://pnpm.io/fr/blog/2020/10/17/node-modules-configuration-options-with-pnpm</link>
-            <guid>Options de configuration des node_modules avec pnpm</guid>
+            <guid>/2020/10/17/node-modules-configuration-options-with-pnpm</guid>
             <pubDate>Sat, 17 Oct 2020 00:00:00 GMT</pubDate>
             <description><![CDATA[Il existe de nombreuses façons de créer un dossier nodemodules. Votre objectif doit être de créer le plus strict, mais si ce n'est pas possible, il y a aussi des options pour faire un nodemodules en vrac.]]></description>
             <content:encoded><![CDATA[<p>Il existe de nombreuses façons de créer un dossier node_modules. Votre objectif doit être de créer le plus strict, mais si ce n&#x27;est pas possible, il y a aussi des options pour faire un node_modules en vrac.</p><h2>Configuration par défaut</h2><p>Par défaut, pnpm v5 créera un node_modules semi-strict. Semi-strict signifie que votre application ne pourra require que des packages ajoutés en tant que dépendances au <code>package.json</code> (à quelques exceptions près). Cependant, vos dépendances pourront accéder à tous les packages.</p><p>La configuration par défaut ressemble à ceci:</p><pre><code class="language-ini">; Tous les packages sont hissés vers node_modules/.pnpm/node_modules
@@ -32,7 +32,7 @@ symlink=false
         <item>
             <title><![CDATA[Flat node_modules n'est pas le seul moyen]]></title>
             <link>https://pnpm.io/fr/blog/2020/05/27/flat-node-modules-is-not-the-only-way</link>
-            <guid>Flat node_modules n'est pas le seul moyen</guid>
+            <guid>/2020/05/27/flat-node-modules-is-not-the-only-way</guid>
             <pubDate>Wed, 27 May 2020 00:00:00 GMT</pubDate>
             <description><![CDATA[Les nouveaux utilisateurs de pnpm me posent souvent des questions sur la structure bizarre du dossier node_modules que pnpm créé. Pourquoi n'est-il pas plat ? Où sont toutes les sous-dépendances ?]]></description>
             <content:encoded><![CDATA[<p>Les nouveaux utilisateurs de pnpm me posent souvent des questions sur la structure bizarre du dossier <code>node_modules</code> que pnpm créé. Pourquoi n&#x27;est-il pas plat ? Où sont toutes les sous-dépendances ?</p><blockquote><p>Je vais supposer que les lecteurs de cet article sont déjà familiers avec les <code>node_modules</code> plats créés par npm et Yarn. Si vous ne comprenez pas pourquoi npm 3 a dû commencer à utiliser <code>node_modules</code> en v3, vous pouvez trouver un peu de préhistoire dans <a href="https://www.kochan.io/nodejs/why-should-we-use-pnpm.html">Pourquoi devrait-on utiliser pnpm ?</a>.</p></blockquote><p>Alors pourquoi les <code>node_modules</code> de pnpm sont inhabituels ? Créons deux répertoires et éxecutons <code>npm add express</code> dans l&#x27;un d&#x27;eux et <code>pnpm add express</code> dans l&#x27;autre. Voilà ce que vous obtenez dans le <code>node_modules</code> du premier répertoire:</p><pre><code class="language-text">.bin
