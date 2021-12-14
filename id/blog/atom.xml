@@ -9,11 +9,11 @@
     <icon>https://pnpm.io/id/img/favicon.png</icon>
     <entry>
         <title type="html"><![CDATA[Opsi konfigurasi Node-Modules dengan pnpm]]></title>
-        <id>/2020/10/17/node-modules-configuration-options-with-pnpm</id>
+        <id>Opsi konfigurasi Node-Modules dengan pnpm</id>
         <link href="https://pnpm.io/id/blog/2020/10/17/node-modules-configuration-options-with-pnpm"/>
         <updated>2020-10-17T00:00:00.000Z</updated>
         <summary type="html"><![CDATA[Ada banyak cara untuk membuat direktori nodemodules. Your goal must be to create the most strict one but if that is not possible, there are options to make a loose nodemodules as well.]]></summary>
-        <content type="html"><![CDATA[<p>Ada banyak cara untuk membuat direktori node_modules. Your goal must be to create the most strict one but if that is not possible, there are options to make a loose node_modules as well.</p><h2>Pengaturan standar</h2><p>By default, pnpm v5 will create a semi-strict node_modules. Semi-strict means that your application will only be able to require packages that are added as dependencies to <code>package.json</code> (with a few exceptions). However, your dependencies will be able to access any packages.</p><p>The default configuration looks like this:</p><pre><code class="language-ini">; All packages are hoisted to node_modules/.pnpm/node_modules
+        <content type="html"><![CDATA[<p>Ada banyak cara untuk membuat direktori node_modules. Your goal must be to create the most strict one but if that is not possible, there are options to make a loose node_modules as well.</p><h2>Pengaturan standar</h2><p>Secara standar, pnpm v5 akan membuat node_modules semi-ketat. Semi-ketat berarti aplikasi Anda hanya dapat meminta paket yang ditambahkan sebagai dependensi ke <code>package.json</code> (dengan beberapa pengecualian). Namun, dependensi Anda akan dapat mengakses paket apa pun.</p><p>Konfigurasi standar terlihat seperti ini:</p><pre><code class="language-ini">; All packages are hoisted to node_modules/.pnpm/node_modules
 hoist-pattern[]=*
 
 ; All types are hoisted to the root in order to make TypeScript happy
@@ -35,7 +35,7 @@ symlink=false
     </entry>
     <entry>
         <title type="html"><![CDATA[Flat node_modules bukan satu-satunya cara]]></title>
-        <id>/2020/05/27/flat-node-modules-is-not-the-only-way</id>
+        <id>Flat node_modules bukan satu-satunya cara</id>
         <link href="https://pnpm.io/id/blog/2020/05/27/flat-node-modules-is-not-the-only-way"/>
         <updated>2020-05-27T00:00:00.000Z</updated>
         <summary type="html"><![CDATA[Pengguna baru pnpm sering bertanya kepada saya tentang struktur aneh node_modules yang dibuat pnpm. Kenapa tidak flat? Di mana semua sub-dependensi?]]></summary>

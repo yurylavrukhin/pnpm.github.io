@@ -10,7 +10,7 @@
         <item>
             <title><![CDATA[Node-Modules configuration options with pnpm]]></title>
             <link>https://pnpm.io/blog/2020/10/17/node-modules-configuration-options-with-pnpm</link>
-            <guid>/2020/10/17/node-modules-configuration-options-with-pnpm</guid>
+            <guid>Node-Modules configuration options with pnpm</guid>
             <pubDate>Sat, 17 Oct 2020 00:00:00 GMT</pubDate>
             <description><![CDATA[There are many ways to create a node_modules directory.]]></description>
             <content:encoded><![CDATA[<p>There are many ways to create a node_modules directory.
@@ -34,7 +34,7 @@ symlink=false
         <item>
             <title><![CDATA[Flat node_modules is not the only way]]></title>
             <link>https://pnpm.io/blog/2020/05/27/flat-node-modules-is-not-the-only-way</link>
-            <guid>/2020/05/27/flat-node-modules-is-not-the-only-way</guid>
+            <guid>Flat node_modules is not the only way</guid>
             <pubDate>Wed, 27 May 2020 00:00:00 GMT</pubDate>
             <description><![CDATA[New users of pnpm frequently ask me about the weird structure of node_modules that pnpm creates. Why is it not flat? Where are all the sub-dependencies?]]></description>
             <content:encoded><![CDATA[<p>New users of pnpm frequently ask me about the weird structure of <code>node_modules</code> that pnpm creates. Why is it not flat? Where are all the sub-dependencies?</p><blockquote><p>I am going to assume that readers of the article are already familiar with flat <code>node_modules</code> created by npm and Yarn. If you don&#x27;t understand why npm 3 had to start using flat <code>node_modules</code> in v3, you can find some prehistory in <a href="https://www.kochan.io/nodejs/why-should-we-use-pnpm.html">Why should we use pnpm?</a>.</p></blockquote><p>So why is pnpm&#x27;s <code>node_modules</code> unusual? Let&#x27;s create two directories and run <code>npm add express</code> in one of them and <code>pnpm add express</code> in the other one. Here&#x27;s the top of what you get in the first directory&#x27;s <code>node_modules</code>:</p><pre><code class="language-text">.bin
