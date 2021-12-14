@@ -34,7 +34,7 @@ symlink=false
         </author>
     </entry>
     <entry>
-        <title type="html"><![CDATA[Flat node_modules is not the only way]]></title>
+        <title type="html"><![CDATA[El node_modules plano no es la única forma]]></title>
         <id>/2020/05/27/flat-node-modules-is-not-the-only-way</id>
         <link href="https://pnpm.io/es/blog/2020/05/27/flat-node-modules-is-not-the-only-way"/>
         <updated>2020-05-27T00:00:00.000Z</updated>
