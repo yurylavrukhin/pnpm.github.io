@@ -10,7 +10,7 @@
         <item>
             <title><![CDATA[pnpm的node_modules配置选项]]></title>
             <link>https://pnpm.io/zh/blog/2020/10/17/node-modules-configuration-options-with-pnpm</link>
-            <guid>pnpm的node_modules配置选项</guid>
+            <guid>/2020/10/17/node-modules-configuration-options-with-pnpm</guid>
             <pubDate>Sat, 17 Oct 2020 00:00:00 GMT</pubDate>
             <description><![CDATA[创建node_modules目录结构有多种方式。 你一定想要创建最严格的结构，当然如果你当前的项目尚无法支持，你可以配置为不严格的。]]></description>
             <content:encoded><![CDATA[<p>创建node_modules目录结构有多种方式。 你一定想要创建最严格的结构，当然如果你当前的项目尚无法支持，你可以配置为不严格的。</p><h2>默认配置</h2><p>默认情况下，pnpm v5将创建一个“半严格”的node_modules。 “半严格”意味着您的应用程序将只能导入 <code>package.json</code> 中列出的依赖项(但也有例外)。 然而，你所依赖的那些包将能访问任何其他的包。</p><p>默认配置如下所示：</p><pre><code class="language-ini">; 提升所有包到 node_modules/.pnpm/node_modules
@@ -32,7 +32,7 @@ symlink=false
         <item>
             <title><![CDATA[平铺的结构不是 node_modules 的唯一实现方式]]></title>
             <link>https://pnpm.io/zh/blog/2020/05/27/flat-node-modules-is-not-the-only-way</link>
-            <guid>平铺的结构不是 node_modules 的唯一实现方式</guid>
+            <guid>/2020/05/27/flat-node-modules-is-not-the-only-way</guid>
             <pubDate>Wed, 27 May 2020 00:00:00 GMT</pubDate>
             <description><![CDATA[Pnpm 的新用户们经常会问我关于 pnpm 创建的奇怪的 node_modules 结构。 为什么不是平铺的？ 次级依赖去哪了？]]></description>
             <content:encoded><![CDATA[<p>Pnpm 的新用户们经常会问我关于 pnpm 创建的奇怪的 <code>node_modules</code> 结构。 为什么不是平铺的？ 次级依赖去哪了？</p><blockquote><p>我将默认这篇文章的读者已经熟悉了 npm 与 yarn 创建的平铺的 <code>node_modules</code>。 如果你不明白为什么 npm3 需要开始在 v3 中使用平铺的 <code>node_modules</code>，你可以在这里找到一些背景知识 <a href="https://www.kochan.io/nodejs/why-should-we-use-pnpm.html">Why should we use pnpm?</a>。</p></blockquote><p>那么为什么 pnpm 的 <code>node_modules</code> 会如此不同寻常呢？ 让我们创建两个目录，并在其中一个执行 <code>npm add express</code>， 然后在另一个中执行 <code>pnpm add express</code>。 以下是你在第一个目录中的 <code>node_modules</code> 的顶级项目：</p><pre><code class="language-text">.bin

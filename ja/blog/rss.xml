@@ -10,7 +10,7 @@
         <item>
             <title><![CDATA[pnpm でのノードモジュールに関するオプション設定]]></title>
             <link>https://pnpm.io/ja/blog/2020/10/17/node-modules-configuration-options-with-pnpm</link>
-            <guid>pnpm でのノードモジュールに関するオプション設定</guid>
+            <guid>/2020/10/17/node-modules-configuration-options-with-pnpm</guid>
             <pubDate>Sat, 17 Oct 2020 00:00:00 GMT</pubDate>
             <description><![CDATA[nodemodules ディレクトリを生成する方法は多くあります。 ゆるい nodemodules を作成する方法もありますが、ここでの目標は最も厳格なものを生成することです。]]></description>
             <content:encoded><![CDATA[<p>node_modules ディレクトリを生成する方法は多くあります。 ゆるい node_modules を作成する方法もありますが、ここでの目標は最も厳格なものを生成することです。</p><h2>デフォルトの構築方法</h2><p>デフォルトでは、pnpm v5 は準厳格な node_modules を作成します。 準厳格な場合は、アプリケーションからは<code>package.json</code> に依存として追加されているパッケージのみを require できます。(いくつかの例外を除きます。) ただし、依存関係はどのパッケージにもアクセスすることができます。</p><p>デフォルトの設定は以下のようになります:</p><pre><code class="language-ini">; すべてのパッケージを node_modules/.pnpm/node_modules に巻き上げる
@@ -32,7 +32,7 @@ symlink=false
         <item>
             <title><![CDATA[フラットな node_modules が唯一の方法ではありません]]></title>
             <link>https://pnpm.io/ja/blog/2020/05/27/flat-node-modules-is-not-the-only-way</link>
-            <guid>フラットな node_modules が唯一の方法ではありません</guid>
+            <guid>/2020/05/27/flat-node-modules-is-not-the-only-way</guid>
             <pubDate>Wed, 27 May 2020 00:00:00 GMT</pubDate>
             <description><![CDATA[pnpm の新規ユーザーから、pnpm が生成する node_modules の奇妙な構造についてよく聞かれます。 なぜ平坦な構造を使用しないのでしょうか。 依存のさらにその依存はどこにあるのでしょうか。]]></description>
             <content:encoded><![CDATA[<p>pnpm の新規ユーザーから、pnpm が生成する <code>node_modules</code> の奇妙な構造についてよく聞かれます。 なぜ平坦な構造を使用しないのでしょうか。 依存のさらにその依存はどこにあるのでしょうか。</p><blockquote><p>この記事では、npm や Yarn の生成するフラットな <code>node_modules</code> に馴染みのある読者を想定しています。 npm が v3 からフラットな <code>node_modules</code> を採用する必要があった理由については、 <a href="https://www.kochan.io/nodejs/why-should-we-use-pnpm.html">なぜ pnpm が必要なのでしょうか (英語)</a> を参照してください。</p></blockquote><p>では、なぜ pnpm は通常とは異なる構造の <code>node_modules</code> を使用するのでしょう。 試しに 2 つのディレクトリを作成して、片方には <code>npm add express</code> を、もう一方には <code>pnpm add express</code> を実行してみてください。 npm の方のディレクトリにある <code>node_modules</code> は次のようになります。</p><pre><code class="language-text">.bin

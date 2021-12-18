@@ -10,7 +10,7 @@
         <item>
             <title><![CDATA[Opsi konfigurasi Node-Modules dengan pnpm]]></title>
             <link>https://pnpm.io/id/blog/2020/10/17/node-modules-configuration-options-with-pnpm</link>
-            <guid>Opsi konfigurasi Node-Modules dengan pnpm</guid>
+            <guid>/2020/10/17/node-modules-configuration-options-with-pnpm</guid>
             <pubDate>Sat, 17 Oct 2020 00:00:00 GMT</pubDate>
             <description><![CDATA[Ada banyak cara untuk membuat direktori nodemodules. Your goal must be to create the most strict one but if that is not possible, there are options to make a loose nodemodules as well.]]></description>
             <content:encoded><![CDATA[<p>Ada banyak cara untuk membuat direktori node_modules. Your goal must be to create the most strict one but if that is not possible, there are options to make a loose node_modules as well.</p><h2>Pengaturan standar</h2><p>Secara standar, pnpm v5 akan membuat node_modules semi-ketat. Semi-ketat berarti aplikasi Anda hanya dapat meminta paket yang ditambahkan sebagai dependensi ke <code>package.json</code> (dengan beberapa pengecualian). Namun, dependensi Anda akan dapat mengakses paket apa pun.</p><p>Konfigurasi standar terlihat seperti ini:</p><pre><code class="language-ini">; All packages are hoisted to node_modules/.pnpm/node_modules
@@ -32,7 +32,7 @@ symlink=false
         <item>
             <title><![CDATA[Flat node_modules bukan satu-satunya cara]]></title>
             <link>https://pnpm.io/id/blog/2020/05/27/flat-node-modules-is-not-the-only-way</link>
-            <guid>Flat node_modules bukan satu-satunya cara</guid>
+            <guid>/2020/05/27/flat-node-modules-is-not-the-only-way</guid>
             <pubDate>Wed, 27 May 2020 00:00:00 GMT</pubDate>
             <description><![CDATA[Pengguna baru pnpm sering bertanya kepada saya tentang struktur aneh node_modules yang dibuat pnpm. Kenapa tidak flat? Di mana semua sub-dependensi?]]></description>
             <content:encoded><![CDATA[<p>Pengguna baru pnpm sering bertanya kepada saya tentang struktur aneh <code>node_modules</code> yang dibuat pnpm. Kenapa tidak flat? Di mana semua sub-dependensi?</p><blockquote><p>Saya akan berasumsi bahwa pembaca artikel sudah terbiasa dengan flat <code>node_modules</code> dibuat oleh npm dan Yarn. Jika Anda tidak mengerti mengapa npm 3 harus mulai menggunakan flat <code>node_modules</code> di v3, Anda dapat menemukan beberapa prasejarah di <a href="https://www.kochan.io/nodejs/why-should-we-use-pnpm.html">Mengapa kita harus menggunakan pnpm?</a>.</p></blockquote><p>Jadi mengapa <code>node_modules</code> pnpm tidak biasa? Mari buat dua direktori dan jalankan <code>npm add express</code> di salah satunya dan <code>pnpm add express</code> di direktori lainnya. Inilah bagian atas dari apa yang Anda dapatkan di direktori pertama <code>node_modules</code>:</p><pre><code class="language-text">.bin
