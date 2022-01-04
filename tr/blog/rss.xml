@@ -38,7 +38,7 @@ symlink=false
 </code></pre>]]></content:encoded>
         </item>
         <item>
-            <title><![CDATA[Düz, klasik node_modules yapısı artık tek yol değil]]></title>
+            <title><![CDATA[Klasik node_modules yapısı artık tek yöntem değil]]></title>
             <link>https://pnpm.io/tr/blog/2020/05/27/flat-node-modules-is-not-the-only-way</link>
             <guid>/2020/05/27/flat-node-modules-is-not-the-only-way</guid>
             <pubDate>Wed, 27 May 2020 00:00:00 GMT</pubDate>
