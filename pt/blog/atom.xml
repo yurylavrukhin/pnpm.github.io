@@ -46,12 +46,12 @@ symlink=false
         </author>
     </entry>
     <entry>
-        <title type="html"><![CDATA[Flat node_modules is not the only way]]></title>
+        <title type="html"><![CDATA[node_modules planos não são a única maneira]]></title>
         <id>/2020/05/27/flat-node-modules-is-not-the-only-way</id>
         <link href="https://pnpm.io/pt/blog/2020/05/27/flat-node-modules-is-not-the-only-way"/>
         <updated>2020-05-27T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[New users of pnpm frequently ask me about the weird structure of node_modules that pnpm creates. Why is it not flat? Where are all the sub-dependencies?]]></summary>
-        <content type="html"><![CDATA[<p>New users of pnpm frequently ask me about the weird structure of <code>node_modules</code> that pnpm creates. Why is it not flat? Where are all the sub-dependencies?</p><blockquote><p>I am going to assume that readers of the article are already familiar with flat <code>node_modules</code> created by npm and Yarn. If you don&#x27;t understand why npm 3 had to start using flat <code>node_modules</code> in v3, you can find some prehistory in <a href="https://www.kochan.io/nodejs/why-should-we-use-pnpm.html">Why should we use pnpm?</a>.</p></blockquote><p>So why is pnpm&#x27;s <code>node_modules</code> unusual? Let&#x27;s create two directories and run <code>npm add express</code> in one of them and <code>pnpm add express</code> in the other one. Here&#x27;s the top of what you get in the first directory&#x27;s <code>node_modules</code>:</p><pre><code class="language-text">.bin
+        <summary type="html"><![CDATA[Novos usuários do pnpm frequentemente me perguntam acerca da estranha estrutura do node_modules que o pnpm cria. Por que não é plano? Onde estão todas as sub-dependências?]]></summary>
+        <content type="html"><![CDATA[<p>Novos usuários do pnpm frequentemente me perguntam acerca da estranha estrutura do <code>node_modules</code> que o pnpm cria. Por que não é plano? Onde estão todas as sub-dependências?</p><blockquote><p>Vou assumir que os leitores do artigo já estão familiarizados com o <code>node_modules</code> plano criado pelo npm e Yarn. Se você não entende por que o npm 3 teve que começar a usar <code>node_modules</code> planos na v3, você pode encontrar um pouco da história em <a href="https://www.kochan.io/nodejs/why-should-we-use-pnpm.html">Por que devemos usar o pnpm?</a>.</p></blockquote><p>Então, por que o <code>node_modules</code> do pnpm é incomum? Vamos criar dois diretórios e executar <code>npm add express</code> em um deles e <code>pnpm add express</code> no outro. Aqui está o início do <code>node_modules</code> do primeiro diretório:</p><pre><code class="language-text">.bin
 accepts
 array-flatten
 body-parser
@@ -67,10 +67,10 @@ encodeurl
 escape-html
 etag
 express
-</code></pre><p>You can see the whole directory <a href="https://github.com/zkochan/comparing-node-modules/tree/master/npm-example/node_modules">here</a>.</p><p>And this is what you get in the <code>node_modules</code> created by pnpm:</p><pre><code class="language-text">.pnpm
+</code></pre><p>Você pode ver todo o diretório <a href="https://github.com/zkochan/comparing-node-modules/tree/master/npm-example/node_modules">aqui</a>.</p><p>E é isso que você obtém no <code>node_modules</code> criado pelo pnpm:</p><pre><code class="language-text">.pnpm
 .modules.yaml
 express
-</code></pre><p>You can check it <a href="https://github.com/zkochan/comparing-node-modules/tree/master/pnpm5-example/node_modules">here</a>.</p><p>So where are all the dependencies? There is only one folder in the <code>node_modules</code> called <code>.pnpm</code> and a symlink called <code>express</code>. Well, we installed only <code>express</code>, so that is the only package that your application has to have access to</p><blockquote><p>Read more about why pnpm&#x27;s strictness is a good thing <a href="https://medium.com/pnpm/pnpms-strictness-helps-to-avoid-silly-bugs-9a15fb306308">here</a></p></blockquote><p>Let&#x27;s see what is inside <code>express</code>:</p><pre><code class="language-text">▾ node_modules
+</code></pre><p>Você pode conferir <a href="https://github.com/zkochan/comparing-node-modules/tree/master/pnpm5-example/node_modules">aqui</a>.</p><p>Então, onde estão todas as dependências? Existe apenas uma pasta em <code>node_modules</code> chamada <code>.pnpm</code> e um link simbólico chamado <code>express</code>. Bem, instalamos apenas <code>express</code>, então esse é o único pacote que sua aplicação tem que ter acesso</p><blockquote><p>Leia mais sobre porque o rigor do pnpm é uma coisa boa <a href="https://medium.com/pnpm/pnpms-strictness-helps-to-avoid-silly-bugs-9a15fb306308">aqui</a></p></blockquote><p>Vamos ver o que está dentro de <code>express</code>:</p><pre><code class="language-text">▾ node_modules
   ▸ .pnpm
   ▾ express
     ▸ lib
@@ -80,15 +80,15 @@ express
       package.json
       Readme.md
     .modules.yaml
-</code></pre><p><code>express</code> has no <code>node_modules</code>? Where are all the dependencies of <code>express</code>?</p><p>The trick is that <code>express</code> is just a symlink. When Node.js resolves dependencies, it uses their real locations, so it does not preserve symlinks. But where is the real location of <code>express</code>, you might ask?</p><p>Here: <a href="https://github.com/zkochan/comparing-node-modules/tree/master/pnpm5-example/node_modules/.pnpm/express@4.17.1/node_modules/express">node_modules/.pnpm/express@4.17.1/node_modules/express</a>.</p><p>OK, so now we know the purpose of the <code>.pnpm/</code> folder. <code>.pnpm/</code> stores all the packages in a flat folder structure, so every package can be found in a folder named by this pattern:</p><pre><code class="language-text">.pnpm/&lt;name&gt;@&lt;version&gt;/node_modules/&lt;name&gt;
-</code></pre><p>We call it the virtual store directory.</p><p>This flat structure avoids the long path issues that were caused by the nested <code>node_modules</code> created by npm v2 but keeps packages isolated unlike the flat <code>node_modules</code> created by npm v3,4,5,6 or Yarn v1.</p><p>Now let&#x27;s look into the real location of <code>express</code>:</p><pre><code class="language-text">  ▾ express
+</code></pre><p><code>express</code> não tem <code>node_modules</code>? Onde estão todas as dependências de <code>express</code>?</p><p>O truque é que <code>express</code> é apenas um link simbólico. Quando o Node.js resolve dependências, ele usa suas localizações reais, portanto, não preserva links simbólicos. Mas onde está a localização real de <code>express</code>, você pode perguntar?</p><p>Aqui: <a href="https://github.com/zkochan/comparing-node-modules/tree/master/pnpm5-example/node_modules/.pnpm/express@4.17.1/node_modules/express">node_modules/.pnpm/express@4.17.1/node_modules/express</a>.</p><p>OK, agora sabemos o propósito da pasta <code>.pnpm/</code>. <code>.pnpm/</code> armazena todos os pacotes em uma estrutura de pastas simples, então cada pacote pode ser encontrado em uma pasta nomeada por este padrão:</p><pre><code class="language-text">.pnpm/&lt;name&gt;@&lt;version&gt;/node_modules/&lt;name&gt;
+</code></pre><p>Nós o chamamos de virtual store directory.</p><p>Essa estrutura plana evita os problemas de longos diretórios causados pelo <code>node_modules</code> aninhados criado pelo npm v2, mas mantém os pacotes isolados ao contrário dos <code>node_modules</code> criados pelo npm v3,4,5,6 ou Yarn v1.</p><p>Agora vamos olhar para a localização real de <code>express</code>:</p><pre><code class="language-text">  ▾ express
     ▸ lib
       History.md
       index.js
       LICENSE
       package.json
       Readme.md
-</code></pre><p>Is it a scam? It still lacks <code>node_modules</code>! The second trick of pnpm&#x27;s <code>node_modules</code> structure is that the dependencies of packages are on the same directory level on which the real location of the dependent package. So dependencies of <code>express</code> are not in <code>.pnpm/express@4.17.1/node_modules/express/node_modules/</code> but in <a href="https://github.com/zkochan/comparing-node-modules/tree/master/pnpm5-example/node_modules/.pnpm/express@4.17.1/node_modules">.pnpm/express@4.17.1/node_modules/</a>:</p><pre><code class="language-text">▾ node_modules
+</code></pre><p>É uma farsa? Ainda falta <code>node_modules</code>! O segundo truque da estrutura <code>node_modules</code> do pnpm é que as dependências dos pacotes estão no mesmo nível de diretório em que a localização real da dependência. Portanto, as dependências de <code>express</code> não estão em <code>.pnpm/express@4.17.1/node_modules/express/node_modules/</code> mas em <a href="https://github.com/zkochan/comparing-node-modules/tree/master/pnpm5-example/node_modules/.pnpm/express@4.17.1/node_modules">.pnpm/express@4.17.1/node_modules/</a>:</p><pre><code class="language-text">▾ node_modules
   ▾ .pnpm
     ▸ accepts@1.3.5
     ▸ array-flatten@1.1.1
@@ -108,7 +108,7 @@ express
             LICENSE
             package.json
             Readme.md
-</code></pre><p>All the dependencies of <code>express</code> are symlinks to appropriate directories in <code>node_modules/.pnpm/</code>. Placing dependencies of <code>express</code> one level up allows avoiding circular symlinks.</p><p>So as you can see, even though pnpm&#x27;s <code>node_modules</code> structure seems unusual at first:</p><ol><li>it is completely Node.js compatible</li><li>packages are nicely grouped with their dependencies</li></ol><p>The structure is a little bit <a href="/how-peers-are-resolved">more complex</a> for packages with peer dependencies but the idea is the same: using symlinks to create a nesting with a flat directory structure.</p>]]></content>
+</code></pre><p>Todas as dependências de <code>express</code> são links simbólicos para diretórios apropriados em <code>node_modules/.pnpm/</code>. Colocar dependências de <code>express</code> um nível acima permite evitar links simbólicos circulares.</p><p>Então, como você pode ver, mesmo que o <code>node_modules</code> do pnpm pareça incomum no início:</p><ol><li>é totalmente compatível com Node.js</li><li>os pacotes são bem agrupados com suas dependências</li></ol><p>A estrutura é um pouco <a href="/how-peers-are-resolved">mais complexa</a> para pacotes com dependências peer, mas a ideia é a mesma: usar links simbólicos para criar um aninhamento com uma estrutura de diretório simples.</p>]]></content>
         <author>
             <name>Zoltan Kochan</name>
             <uri>http://twitter.com/zoltankochan</uri>
